@@ -1,0 +1,12 @@
+
+{
+
+    "parent": "block/cube_all",
+
+    "textures": {
+
+        "all": "vum:blocks/andesite_bricks"
+
+    }
+
+}
