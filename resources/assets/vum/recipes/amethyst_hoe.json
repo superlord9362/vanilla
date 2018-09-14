@@ -1,0 +1,19 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "##",
+    "X ",
+    "X "
+  ],
+  "key": {
+    "#": {
+      "item": "vum:amethyst_stone"
+    },
+    "X": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "vum:amethyst_hoe"
+  }
+}

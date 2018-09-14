@@ -1,0 +1,15 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "vum:amethyst_stone"
+    }
+  },
+  "result": {
+    "item": "vum:amethyst_boots"
+  }
+}

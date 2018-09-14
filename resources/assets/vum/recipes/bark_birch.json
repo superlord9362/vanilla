@@ -1,0 +1,45 @@
+
+{
+
+    "type": "minecraft:crafting_shaped",
+
+    
+
+    "pattern":
+
+    [
+
+        "BB"
+        "BB"      
+
+    ],
+
+    
+
+    "key":
+
+    {
+
+        "B":
+
+        {
+
+            "item": "minecraft:log"
+            "data": "2"
+        }
+
+    },
+
+    
+
+    "result":
+
+    {
+
+        "item": "vum:bark_birch",
+
+        "count": 3
+
+    }
+
+}
