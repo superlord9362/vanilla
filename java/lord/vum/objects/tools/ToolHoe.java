@@ -12,7 +12,7 @@ public class ToolHoe extends ItemHoe implements IHasModel {
 		super(material);
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(CreativeTabs.TOOLS);
+		setCreativeTab(Main.vumtab);
 		
 		ItemInit.ITEMS.add(this);
 	}

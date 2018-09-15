@@ -9,4 +9,6 @@ public class Reference {
 	public static final String CLIENTPROXY = "lord.vum.proxy.ClientProxy";
 	public static final String COMMONPROXY = "lord.vum.proxy.CommonProxy";
 	
+	public static final int ENTITY_GOAT = 200;
+	
 }

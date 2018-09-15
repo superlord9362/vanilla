@@ -2,6 +2,7 @@ package lord.vum.objects.armor;
 
 import lord.vum.Main;
 import lord.vum.init.ItemInit;
+import lord.vum.tabs.VumTab;
 import lord.vum.util.IHasModel;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -15,7 +16,7 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 		super(material, renderIndexIn, equipmentSlotIn);
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(CreativeTabs.COMBAT);
+		setCreativeTab(Main.vumtab);
 		
 		ItemInit.ITEMS.add(this);
 	}

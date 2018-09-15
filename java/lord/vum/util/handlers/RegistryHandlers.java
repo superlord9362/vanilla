@@ -39,4 +39,12 @@ public class RegistryHandlers {
 	
 	public static void preInitRegistries() {
 	}
+	public static void initRegistries() {
+		// TODO Auto-generated method stub
+		
+	}
+	public static void postInitRegistries() {
+		// TODO Auto-generated method stub
+		
+	}
 }
