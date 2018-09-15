@@ -2,6 +2,7 @@ package lord.vum;
 
 import lord.vum.proxy.CommonProxy;
 import lord.vum.util.Reference;
+import lord.vum.world.OreGeneration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -22,7 +23,9 @@ public class Main {
 	@EventHandler
 	public static void preInit(FMLPreInitializationEvent event) {}
 	@EventHandler
-	public static void init(FMLInitializationEvent event) {}
+	public static void init(FMLInitializationEvent event) {
+		new OreGeneration();
+	}
 	@EventHandler
 	public static void postInit(FMLPostInitializationEvent event) {}
 }
