@@ -18,8 +18,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class OreGeneration implements IWorldGenerator {
 	public static final int ORE_MIN = 8;
 	public static final int ORE_MAX = 45;
-	public static final int VEIN_SIZE = 10;
+	public static final int VEIN_SIZE = 4;
 	public static final int VEIN_FREQ = 2;
+	public static final int ORE_LIME_MIN = 8;
+	public static final int ORE_LIME_MAX = 71;
+	public static final int VEIN_SIZE_LIME = 32;
+	public static final int VEIN_FREQ_LIME = 6;
 	
 	public OreGeneration() {
 		GameRegistry.registerWorldGenerator(this, 5);
@@ -32,7 +36,9 @@ public class OreGeneration implements IWorldGenerator {
 				BlockPos pos = new BlockPos(chunkX*16+random.nextInt(16), random.nextInt(ORE_MAX-ORE_MIN)+ORE_MIN, chunkZ*16+random.nextInt(16));
 				new WorldGenMinable(BlockInit.ORE_JADE.getDefaultState(), VEIN_SIZE, BlockMatcher.forBlock(Blocks.STONE)).generate(world, random, pos);
 				new WorldGenMinable(BlockInit.ORE_AMETHYST.getDefaultState(), VEIN_SIZE, BlockMatcher.forBlock(Blocks.STONE)).generate(world, random, pos);
-
+				BlockPos pos2 = new BlockPos(chunkX*16+random.nextInt(16), random.nextInt(ORE_LIME_MAX-ORE_LIME_MIN)+ORE_LIME_MIN, chunkZ*16+random.nextInt(16));
+				new WorldGenMinable(BlockInit.MARBLE.getDefaultState(), VEIN_SIZE_LIME, BlockMatcher.forBlock(Blocks.STONE)).generate(world, random, pos2);
+				new WorldGenMinable(BlockInit.LIMESTONE.getDefaultState(), VEIN_SIZE_LIME, BlockMatcher.forBlock(Blocks.STONE)).generate(world, random, pos2);
 			}
 			
 		}

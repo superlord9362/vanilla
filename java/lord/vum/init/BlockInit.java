@@ -28,4 +28,13 @@ public class BlockInit {
 	public static final Block STRIPPED_JUNGLE = new BlockBase("stripped_jungle", Material.WOOD);
 	public static final Block STRIPPED_OAK = new BlockBase("stripped_oak", Material.WOOD);
 	public static final Block STRIPPED_SPRUCE = new BlockBase("stripped_spruce", Material.WOOD);
+	public static final Block LIMESTONE = new BlockBase("limestone", Material.ROCK);
+	public static final Block LIMESTONE_BRICKS = new BlockBase("limestone_bricks", Material.ROCK);
+	public static final Block LIMESTONE_PILLAR = new BlockBase("limestone_pillar", Material.ROCK);
+	public static final Block LIMESTONE_SMOOTH = new BlockBase("limestone_smooth", Material.ROCK);
+	public static final Block MARBLE = new BlockBase("marble", Material.ROCK);
+	public static final Block MARBLE_SMOOTH = new BlockBase("marble_smooth", Material.ROCK);
+	public static final Block MARBLE_BRICKS = new BlockBase("marble_bricks", Material.ROCK);
+	public static final Block MARBLE_PILLAR = new BlockBase("marble_pillar", Material.ROCK);
+
 }
