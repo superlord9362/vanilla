@@ -5,11 +5,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
 public class VumTab extends CreativeTabs {
-	
+
 	public VumTab(String label) {
-		super("vumTab");
+		super("vumtab");
 	}
+
+	@Override
 	public ItemStack getTabIconItem() {
-		return new ItemStack(ItemInit.JADE);
+		return new ItemStack (ItemInit.JADE);
 	}
+
 }

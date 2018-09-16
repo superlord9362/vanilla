@@ -16,7 +16,7 @@ public class BlockBase extends Block implements IHasModel {
 		super(material);
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(Main.vumtab);
+		setCreativeTab(Main.vumTab);
 		this.setHardness(10);
 		this.setResistance(10);
 		

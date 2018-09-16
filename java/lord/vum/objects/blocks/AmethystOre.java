@@ -19,7 +19,7 @@ public class AmethystOre extends Block implements IHasModel {
 		super(material);
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(Main.vumtab);
+		setCreativeTab(Main.vumTab);
 		this.setHardness(3);
 		
 		BlockInit.BLOCKS.add(this);
