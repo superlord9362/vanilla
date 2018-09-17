@@ -1,0 +1,18 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "vum:marble",
+      "data": 3
+    }
+  },
+  "result": {
+    "item": "vum:marble_smooth",
+    "data": 4,
+    "count": 4
+  }
+}
