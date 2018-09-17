@@ -1,0 +1,16 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "vum:jade_stone"
+    }
+  },
+  "result": {
+    "item": "vum:jade_chest"
+  }
+}

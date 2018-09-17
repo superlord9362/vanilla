@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "vum:amethyst_block"
+    }
+  ],
+  "result": {
+    "item": "vum:amethyst_stone",
+    "count": 9
+  }
+}
