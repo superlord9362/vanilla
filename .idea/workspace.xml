@@ -2,35 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e19d56fc-59a2-47cf-b768-9cd2ae5b0eb3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/acacia_bark_block.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/amethyst_axe.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/amethyst_block.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/amethyst_boots.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/amethyst_chestplate.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/amethyst_helmet.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/amethyst_hoe.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/amethyst_leggings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/amethyst_pickaxe.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/amethyst_shovel.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/amethyst_sword.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/bark_birch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/birch_bark_block.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/dark_oak_bark_block.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/jade_axe.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/jade_block.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/jade_boots.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/jade_chestplate.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/jade_helmet.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/jade_hoe.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/jade_leggings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/jade_pickaxe.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/jade_shovel.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/jade_sword.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/jungle_bark.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/jungle_bark_block.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/oak_bark_block.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/spruce_bark_block.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/vum/textures/blocks/ore_jade.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/vum/textures/blocks/ore_jade.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/vum/recipes/limestone/limestone_polished.json" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,9 +16,10 @@
         <counts>
           <entry key="project.closed" value="3" />
           <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -62,12 +35,12 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/java/lord/vum/init/BlockInit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="30" column="1" lean-forward="true" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+            <state relative-caret-position="544">
+              <caret line="39" column="1" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -86,7 +59,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="260" />
     <option name="y" value="60" />
     <option name="width" value="1400" />
@@ -97,9 +70,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -137,6 +107,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -168,10 +141,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="32" width="1936" height="1056" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25799572" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -204,8 +176,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/java/lord/vum/init/BlockInit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="30" column="1" lean-forward="true" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+        <state relative-caret-position="544">
+          <caret line="39" column="1" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
         </state>
       </provider>
     </entry>

@@ -1,0 +1,18 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "vum:limestone",
+      "data": 3
+    }
+  },
+  "result": {
+    "item": "vum:limestone_smooth",
+    "data": 4,
+    "count": 4
+  }
+}
