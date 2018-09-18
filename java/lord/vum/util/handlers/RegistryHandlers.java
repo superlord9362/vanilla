@@ -2,6 +2,7 @@ package lord.vum.util.handlers;
 
 import lord.vum.Main;
 import lord.vum.entities.EntityGoat;
+import lord.vum.entities.EntityHamster;
 import lord.vum.init.BlockInit;
 import lord.vum.init.ItemInit;
 import lord.vum.util.IHasModel;
@@ -17,6 +18,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import lord.vum.entities.EntityJerbos;
+import lord.vum.entities.EntityPenguin;
 
 @EventBusSubscriber
 public class RegistryHandlers {
@@ -54,5 +57,11 @@ public class RegistryHandlers {
     public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
 		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, "goat"), EntityGoat.class, "goat", entityId++, Main.instance, 64, 3, true, 12871971, 10507067);
 		EntityRegistry.addSpawn(EntityGoat.class, 60, 3, 5, EnumCreatureType.CREATURE, Biomes.EXTREME_HILLS, Biomes.EXTREME_HILLS_EDGE, Biomes.MUTATED_EXTREME_HILLS_WITH_TREES);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, "jerboa"), EntityJerbos.class, "jerboa", entityId++, Main.instance, 64, 3, true, 0x5F4023, 0x000000);
+		EntityRegistry.addSpawn(EntityJerbos.class, 65, 2, 5, EnumCreatureType.CREATURE, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.MUTATED_DESERT);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, "penguin"), EntityPenguin.class, "penguin", entityId++, Main.instance, 64, 3, true, 0x000000, 0xffffff);
+		EntityRegistry.addSpawn(EntityPenguin.class, 20, 5, 10, EnumCreatureType.CREATURE, Biomes.ICE_PLAINS);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, "hamster"), EntityHamster.class, "hamster", entityId++, Main.instance, 64, 3, true, 0x7F6A00, 0x000000);
+		EntityRegistry.addSpawn(EntityHamster.class, 40, 1, 3, EnumCreatureType.AMBIENT, Biomes.PLAINS);
 	}
 }

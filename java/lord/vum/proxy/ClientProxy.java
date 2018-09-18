@@ -1,7 +1,13 @@
 package lord.vum.proxy;
 
 import lord.vum.entities.EntityGoat;
+import lord.vum.entities.EntityHamster;
+import lord.vum.entities.EntityJerbos;
+import lord.vum.entities.EntityPenguin;
 import lord.vum.entities.renderers.GoatRenderer;
+import lord.vum.entities.renderers.HamsterRenderer;
+import lord.vum.entities.renderers.JerboaRenderer;
+import lord.vum.entities.renderers.PenguinRenderer;
 import lord.vum.util.Reference;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -31,5 +37,8 @@ public class ClientProxy extends CommonProxy {
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
 		RenderingRegistry.registerEntityRenderingHandler(EntityGoat.class, GoatRenderer.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityJerbos.class, JerboaRenderer.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityPenguin.class, PenguinRenderer.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityHamster.class, HamsterRenderer.FACTORY);
 	}
 }

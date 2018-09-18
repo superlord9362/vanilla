@@ -2,7 +2,9 @@ package lord.vum.entities.models;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * ModelGoat - JJo
@@ -22,6 +24,11 @@ public class ModelGoat extends ModelBase {
     public ModelRenderer RightEar;
     public ModelRenderer LeftHornMale;
     public ModelRenderer RightHornMale;
+
+
+    protected float childYOffset = 8.0F;
+
+    protected float childZOffset = 4.0F;
 
     public ModelGoat() {
         this.textureWidth = 64;
@@ -89,7 +96,58 @@ public class ModelGoat extends ModelBase {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-        this.Body.render(f5);
+    	if (this.isChild)
+
+	        {
+
+	            float f6 = 2.0F;
+
+	            GlStateManager.pushMatrix();
+
+	            GlStateManager.translate(0.0F, this.childYOffset * f5, this.childZOffset * f5);
+
+	            GlStateManager.popMatrix();
+
+	            GlStateManager.pushMatrix();
+
+	            GlStateManager.scale(0.5F, 0.5F, 0.5F);
+
+	            GlStateManager.translate(0.0F, 24.0F * f5, 0.0F);
+
+	            this.Body.render(f5);
+
+	            GlStateManager.popMatrix();
+
+	        } else {
+
+
+	        	this.Body.render(f5);  }
+    }
+    
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
+
+    	float XAngle = headPitch / 57.29578F;
+
+    	float YAngle = netHeadYaw / 57.29578F;
+
+    	
+
+    	
+
+    	this.Head.rotateAngleX= (0.2617794F + XAngle);
+
+    	this.Head.rotateAngleY= YAngle;
+
+    	
+
+    	this.BackRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+
+    	this.BackLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+
+    	this.FrontRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+
+    	this.FrontLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+
     }
 
     /**
