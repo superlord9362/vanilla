@@ -62,6 +62,6 @@ public class RegistryHandlers {
 		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, "penguin"), EntityPenguin.class, "penguin", entityId++, Main.instance, 64, 3, true, 0x000000, 0xffffff);
 		EntityRegistry.addSpawn(EntityPenguin.class, 20, 5, 10, EnumCreatureType.CREATURE, Biomes.ICE_PLAINS);
 		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, "hamster"), EntityHamster.class, "hamster", entityId++, Main.instance, 64, 3, true, 0x7F6A00, 0x000000);
-		EntityRegistry.addSpawn(EntityHamster.class, 10, 1, 3, EnumCreatureType.AMBIENT, Biomes.PLAINS);
+		EntityRegistry.addSpawn(EntityHamster.class, 40, 1, 3, EnumCreatureType.AMBIENT, Biomes.PLAINS);
 	}
 }
