@@ -1,4 +1,4 @@
-package lord.vum.enities.models;
+package lord.vum.entities.models;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
