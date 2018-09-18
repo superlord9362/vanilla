@@ -51,3 +51,7 @@ tile.marble.name=Marble
 tile.marble_smooth.name=Smooth Marble
 tile.marble_bricks.name=Marble Bricks
 tile.marble_pillar.name=Marble Pillar
+entity.goat.name=Goat
+entity.jerboa.name=Jerboa
+entity.penguin.name=Penguin
+entity.hamster.name=Hamster
