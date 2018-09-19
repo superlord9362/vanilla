@@ -1,18 +1,24 @@
 {
-  "type": "crafting_shaped",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
-    "##",
-    "##"
+    "###",
+    "###",
+    "###"
+  ],
+  "ingredients":[
+    {
+        "item":"vum:limestone"
+    }
   ],
   "key": {
     "#": {
       "item": "vum:limestone",
-      "data": 3
+      "data": 0
     }
   },
   "result": {
     "item": "vum:limestone_smooth",
-    "data": 4,
-    "count": 4
+    "count": 9,
+    "data": 0   
   }
 }

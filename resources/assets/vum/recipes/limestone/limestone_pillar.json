@@ -1,8 +1,13 @@
 {
-  "type": "crafting_shaped",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "#",
     "#"
+  ],
+  "ingredients":[
+    {
+        "item":"vum:limestone"
+    }
   ],
   "key": {
     "#": {
@@ -12,7 +17,7 @@
   },
   "result": {
     "item": "vum:limestone_pillar",
-    "data": 2,
-    "count": 2
+    "count": 2,
+    "data": 0   
   }
 }
