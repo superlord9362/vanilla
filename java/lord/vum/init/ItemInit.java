@@ -31,6 +31,7 @@ public static final List<Item> ITEMS = new ArrayList<Item>();
 	public static final Item AMETHYST = new ItemBase("amethyst");
 	public static final Item JADE_INGOT = new ItemBase("jade_stone");
 	public static final Item AMETHYST_STONE = new ItemBase("amethyst_stone");
+	public static final Item BLUBBER = new ItemBase("blubber");
 	
 	public static final Item JADE_SWORD = new ToolSword("jade_sword", TOOL_JADE);
 	public static final Item JADE_HOE = new ToolHoe("jade_hoe", TOOL_JADE);
