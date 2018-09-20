@@ -5,6 +5,8 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityWaterMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -29,7 +31,8 @@ public class EntityNautilus extends EntityWaterMob {
 	}
 	@Override
 	public void initEntityAI() {
-		this.tasks.addTask(0, new EntityNautilus.AIMoveRandom(this));
+		this.tasks.addTask(0, new EntityNautilus.AIFleeFromPlayer(this));
+		this.tasks.addTask(1, new EntityNautilus.AIMoveRandom(this));
 	}
 	
 	@Override
@@ -91,10 +94,11 @@ public class EntityNautilus extends EntityWaterMob {
 	static class AIMoveRandom extends EntityAIBase
     {
         private final EntityNautilus squid;
-
+        
         public AIMoveRandom(EntityNautilus p_i45859_1_)
         {
             this.squid = p_i45859_1_;
+            this.setMutexBits(1);
         }
 
         /**
@@ -128,7 +132,46 @@ public class EntityNautilus extends EntityWaterMob {
             }
         }
     }
+	
+	static class AIFleeFromPlayer extends EntityAIBase{
 
+		final EntityNautilus nautilus;
+		float playerFleeDistance = 2.5f;
+		EntityPlayer fleeTarget;
+		public AIFleeFromPlayer(EntityNautilus nautilus) {
+			this.nautilus=nautilus;
+			this.setMutexBits(1);
+		}
+		@Override
+		public boolean shouldExecute() {
+			fleeTarget = nautilus.world.getClosestPlayer(nautilus.posX, nautilus.posY, nautilus.posZ, playerFleeDistance, false);
+			return fleeTarget!=null;
+		}
 
+		@Override
+		public void updateTask() {
+			int i = this.nautilus.getIdleTime();
+			float vecX = (float) (nautilus.posX-fleeTarget.posX);
+			float vecY = (float) (nautilus.posY-fleeTarget.posY-1.5f);
+			float vecZ = (float) (nautilus.posZ-fleeTarget.posZ);
+			
+			float dist = MathHelper.sqrt(vecX*vecX + vecY*vecY+vecZ*vecZ);
+			
+			vecX/=dist;
+			vecY/=dist;
+			vecZ/=dist;
+			
+			
+
+			nautilus.setMovementVector(vecX, vecY, vecZ);
+			nautilus.randomMotionSpeed=.2f;
+			
+			
+			
+		
+		float particleSpeed = 0f;
+		if(nautilus.getRNG().nextInt(10)==0) nautilus.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, 0*nautilus.posX, 0*nautilus.posY, 0*nautilus.posZ, -vecX*particleSpeed, -vecX*particleSpeed,-vecX*particleSpeed);
+	}
+	}
 
 }
