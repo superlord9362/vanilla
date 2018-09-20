@@ -13,19 +13,19 @@ public class EntityNautilus extends EntityWaterMob {
     private float randomMotionVecX;
     private float randomMotionVecY;
     private float randomMotionVecZ;
-	private float randomMotionSpeed = .3f;
+	private float randomMotionSpeed = .5f;
 	
 	public float targetYaw;
 	public float currentYaw;
 	public float targetPitch;
 	private float turnSpeed = .1f;
-    public static final float tentacleTime = 30;
+    public static final float tentacleTime = 20;
     public float tentacleAngle;
-    
+    public float prevTentacleAngle;
    
 	public EntityNautilus(World worldIn) {
 		super(worldIn);
-		// TODO Auto-generated constructor stub
+		setSize(.3f,.5f);
 	}
 	@Override
 	public void initEntityAI() {
@@ -40,7 +40,7 @@ public class EntityNautilus extends EntityWaterMob {
         {
             	float f1 =(float) Math.sqrt((motionX*motionX + motionY*motionY+motionZ*motionZ));
                 float f = ((this.world.getWorldTime())%tentacleTime)/(tentacleTime);
-
+                this.prevTentacleAngle=tentacleAngle;
                 this.tentacleAngle = MathHelper.sin(f * f * (float)Math.PI) * (float)Math.PI * 0.125F;
                 this.randomMotionSpeed*=0.95f;
                 if (!this.world.isRemote)
@@ -50,16 +50,18 @@ public class EntityNautilus extends EntityWaterMob {
                     this.motionZ = (double)(this.randomMotionVecZ * this.randomMotionSpeed);
                 }
                 
-                
+                this.prevRotationPitch=rotationPitch;
                 this.targetPitch = MathHelper.wrapDegrees((float) (MathHelper.atan2(this.motionY,f2)*(180f/Math.PI)))-this.rotationPitch;
                 this.rotationPitch+=targetPitch*turnSpeed;
             }
             else
             {
                 this.tentacleAngle = 0.0F;
+                this.prevRotationPitch=rotationPitch;
                 this.rotationPitch=0f;
             }
 			this.targetYaw = MathHelper.wrapDegrees((float) (-MathHelper.atan2(this.motionX/f2, this.motionZ/f2)*(180f/Math.PI)))-this.rotationYaw;
+			this.prevRotationYaw=this.rotationYaw;
 			this.rotationYaw+=targetYaw*turnSpeed;
 
 	}
@@ -68,7 +70,7 @@ public class EntityNautilus extends EntityWaterMob {
 	@Override
 	public void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(3);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6);
 	}
 
     public void setMovementVector(float randomMotionVecXIn, float randomMotionVecYIn, float randomMotionVecZIn)
@@ -116,7 +118,7 @@ public class EntityNautilus extends EntityWaterMob {
             }
             else if (this.squid.getRNG().nextInt(50) == 0 || !this.squid.inWater || !this.squid.hasMovementVector())
             {
-            	squid.randomMotionSpeed=1f;
+            	squid.randomMotionSpeed=.5f;
                 float f = this.squid.getRNG().nextFloat() * ((float)Math.PI * 2F);
                 float f1 = MathHelper.cos(f) * 0.2F;
                 float f2 = -0.1F + this.squid.getRNG().nextFloat() * 0.2F*(this.squid.isInWater()?1f:-1f);

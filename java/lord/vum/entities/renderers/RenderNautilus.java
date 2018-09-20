@@ -18,7 +18,7 @@ public class RenderNautilus extends RenderLiving<EntityNautilus>{
 	
 	
 	public RenderNautilus(RenderManager rendermanagerIn, ModelBase modelbaseIn, float shadowsizeIn) {
-		super(rendermanagerIn, modelbaseIn, .09f);
+		super(rendermanagerIn, modelbaseIn, .1f);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -32,8 +32,9 @@ public class RenderNautilus extends RenderLiving<EntityNautilus>{
     protected void applyRotations(EntityNautilus entityLiving, float p_77043_2_, float rotationYaw, float partialTicks)
     {
 		GlStateManager.rotate(180f-rotationYaw,0,1f,0);
-		GlStateManager.rotate(entityLiving.rotationPitch,1f,0,0);
+		GlStateManager.rotate(entityLiving.prevRotationPitch+(entityLiving.rotationPitch-entityLiving.prevRotationPitch)*partialTicks,1f,0,0);
 		if(entityLiving.isInWater()) return;
+		GlStateManager.translate(0, .05, 0);
 		GlStateManager.rotate(90f,0,0,1f);
 		GlStateManager.translate(0, -.2, 0);
     }
@@ -41,7 +42,7 @@ public class RenderNautilus extends RenderLiving<EntityNautilus>{
 	@Override
     protected float handleRotationFloat(EntityNautilus livingBase, float partialTicks)
     {
-        return livingBase.tentacleAngle;
+        return livingBase.prevTentacleAngle+(livingBase.tentacleAngle-livingBase.prevTentacleAngle)*partialTicks;
     }
 
 	public static class RenderNautilusFactory implements IRenderFactory<EntityNautilus>{
