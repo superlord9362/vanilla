@@ -46,6 +46,6 @@ public class BlockInit {
 	public static final Block FIRE_CORAL = new BlockBase("fire_coral_block", Material.CORAL);
 	public static final Block TUBE_CORAL = new BlockBase("tube_coral_block", Material.CORAL);
 	public static final Block HORN_CORAL = new BlockBase("horn_coral_block", Material.CORAL);
-
+	public static final Block MUD = new BlockBase("mud", Material.GROUND);
 
 }
