@@ -36,5 +36,16 @@ public class BlockInit {
 	public static final Block MARBLE_SMOOTH = new BlockBase("marble_smooth", Material.ROCK);
 	public static final Block MARBLE_BRICKS = new BlockBase("marble_bricks", Material.ROCK);
 	public static final Block MARBLE_PILLAR = new BlockBase("marble_pillar", Material.ROCK);
+	public static final Block DIORITE_BRICKS_MOSSY = new BlockBase("diorite_bricks_mossy", Material.ROCK);
+	public static final Block LIMESTONE_BRICKS_MOSSY = new BlockBase("limestone_bricks_mossy", Material.ROCK);
+	public static final Block GRANITE_BRICKS_MOSSY = new BlockBase("granite_bricks_mossy", Material.ROCK);
+	public static final Block ANDESITE_BRICKS_MOSSY = new BlockBase("andesite_bricks_mossy", Material.ROCK);
+	public static final Block MARBLE_BRICKS_MOSSY = new BlockBase("marble_bricks_mossy", Material.ROCK);
+	public static final Block BRAIN_CORAL = new BlockBase("brain_coral_block", Material.CORAL);
+	public static final Block BUBBLE_CORAL = new BlockBase("bubble_coral_block", Material.CORAL);
+	public static final Block FIRE_CORAL = new BlockBase("fire_coral_block", Material.CORAL);
+	public static final Block TUBE_CORAL = new BlockBase("tube_coral_block", Material.CORAL);
+	public static final Block HORN_CORAL = new BlockBase("horn_coral_block", Material.CORAL);
+
 
 }

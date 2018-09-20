@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "ingredients":[
+    {
+        "item":"vum:marble"
+    }
+  ],
+  "key": {
+    "#": {
+      "item": "vum:marble",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "vum:marble_bricks",
+    "count": 4,
+    "data": 0   
+  }
+}
