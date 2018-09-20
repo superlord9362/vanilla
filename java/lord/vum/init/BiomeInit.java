@@ -14,16 +14,17 @@ public class BiomeInit {
 	public static final Biome TROPICAL_OCEAN = new TropicalOcean();
 
 	public static void registerBiomes() {
-		initBiome(TROPICAL_OCEAN, "Tropical Ocean", 5, BiomeType.WARM, Type.OCEAN, Type.WATER, Type.WET);
+		initBiome(TROPICAL_OCEAN, "Tropical Ocean", 5, false, BiomeType.WARM, Type.OCEAN, Type.WATER, Type.WET);
 	}
 	
-	private static Biome initBiome(Biome biome, String name, int weight, BiomeType biomeType, Type... types)
+	private static Biome initBiome(Biome biome, String name, int weight, boolean isSpawnBiome, BiomeType biomeType, Type... types)
 	{
 		biome.setRegistryName(name);
 		ForgeRegistries.BIOMES.register(biome);
 		BiomeDictionary.addTypes(biome, types);
 		BiomeManager.addBiome(biomeType, new BiomeEntry(biome, weight));
-		BiomeManager.addSpawnBiome(biome);
+		if(isSpawnBiome)
+			BiomeManager.addSpawnBiome(biome);
 		return biome;
 	}
 }
