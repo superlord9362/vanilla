@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "ingredients":[
+    {
+        "item":"vum:limestone"
+    }
+  ],
+  "key": {
+    "#": {
+      "item": "vum:limestone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "vum:limestone_bricks",
+    "count": 4,
+    "data": 0   
+  }
+}
