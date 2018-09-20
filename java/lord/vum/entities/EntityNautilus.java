@@ -19,7 +19,7 @@ public class EntityNautilus extends EntityWaterMob {
 	public float currentYaw;
 	public float targetPitch;
 	private float turnSpeed = .1f;
-    public static final float tentacleTime = 40;
+    public static final float tentacleTime = 30;
     public float tentacleAngle;
     
    
@@ -39,9 +39,9 @@ public class EntityNautilus extends EntityWaterMob {
 		if (this.inWater)
         {
             	float f1 =(float) Math.sqrt((motionX*motionX + motionY*motionY+motionZ*motionZ));
-                float f = ((this.world.getWorldTime()*f1)%tentacleTime)*(float)Math.PI/(tentacleTime/2);
+                float f = ((this.world.getWorldTime())%tentacleTime)/(tentacleTime);
 
-                this.tentacleAngle = MathHelper.sin(f * f * (float)Math.PI) * (float)Math.PI * 0.25F;
+                this.tentacleAngle = MathHelper.sin(f * f * (float)Math.PI) * (float)Math.PI * 0.125F;
                 this.randomMotionSpeed*=0.95f;
                 if (!this.world.isRemote)
                 {

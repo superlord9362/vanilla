@@ -35,6 +35,7 @@ public class RenderNautilus extends RenderLiving<EntityNautilus>{
 		GlStateManager.rotate(entityLiving.rotationPitch,1f,0,0);
 		if(entityLiving.isInWater()) return;
 		GlStateManager.rotate(90f,0,0,1f);
+		GlStateManager.translate(0, -.2, 0);
     }
 	
 	@Override
