@@ -4,6 +4,7 @@ import lord.vum.entities.EntityGoat;
 import lord.vum.entities.EntityHamster;
 import lord.vum.entities.EntityJerbos;
 import lord.vum.entities.EntityLS;
+import lord.vum.entities.EntityNautilus;
 import lord.vum.entities.EntityPenguin;
 import lord.vum.entities.EntitySeal;
 import lord.vum.entities.models.LeopardSeal;
@@ -12,6 +13,7 @@ import lord.vum.entities.renderers.HamsterRenderer;
 import lord.vum.entities.renderers.JerboaRenderer;
 import lord.vum.entities.renderers.LeopardSealRenderer;
 import lord.vum.entities.renderers.PenguinRenderer;
+import lord.vum.entities.renderers.RenderNautilus;
 import lord.vum.entities.renderers.SealRenderer;
 import lord.vum.util.Reference;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -47,6 +49,6 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityHamster.class, HamsterRenderer.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntitySeal.class, SealRenderer.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityLS.class, LeopardSealRenderer.FACTORY);
-
+		RenderingRegistry.registerEntityRenderingHandler(EntityNautilus.class, RenderNautilus.FACTORY);
 	}
 }
