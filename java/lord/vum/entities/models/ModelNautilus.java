@@ -21,6 +21,7 @@ public class ModelNautilus extends ModelBase {
     public ModelRenderer shape7_6;
     public ModelRenderer shape7_7;
 
+    public ModelRenderer[] tentacles;
     public ModelNautilus() {
         this.textureWidth = 64;
         this.textureHeight = 32;
@@ -76,8 +77,26 @@ public class ModelNautilus extends ModelBase {
         this.shape6.addChild(this.shape7_6);
         this.shape6.addChild(this.shape7_2);
         this.shape6.addChild(this.shape7_7);
+        tentacles = new ModelRenderer[] {
+        		shape7,
+            	shape7_1,	
+            	shape7_2,	
+            	shape7_3,	
+            	shape7_4,	
+            	shape7_5,	
+            	shape7_6,	
+            	shape7_7,	
+            };
     }
-
+	@Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    {
+        for (ModelRenderer modelrenderer : this.tentacles)
+        {
+            modelrenderer.rotateAngleX = ageInTicks;
+        }
+    }
+    
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
         this.shape1.render(f5);

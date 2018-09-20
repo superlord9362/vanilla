@@ -20,6 +20,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import lord.vum.entities.EntityJerbos;
 import lord.vum.entities.EntityLS;
+import lord.vum.entities.EntityNautilus;
 import lord.vum.entities.EntityPenguin;
 import lord.vum.entities.EntitySeal;
 
@@ -69,7 +70,7 @@ public class RegistryHandlers {
 		EntityRegistry.addSpawn(EntitySeal.class, 40, 1, 3, EnumCreatureType.AMBIENT, Biomes.BEACH, Biomes.STONE_BEACH);
 		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, "leopardseal"), EntityLS.class, "leopardseal", entityId++, Main.instance, 64, 3, true, 0x808080, 0x000000);
 		EntityRegistry.addSpawn(EntityLS.class, 40, 1, 3, EnumCreatureType.AMBIENT, Biomes.COLD_BEACH);
-
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"nautilus"), EntityNautilus.class, "nautilus", entityId++, Main.instance, 16, 3, true, 0x808080, 0x808080);
 		
 	}
 }
