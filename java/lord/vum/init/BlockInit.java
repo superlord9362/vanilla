@@ -50,4 +50,5 @@ public class BlockInit {
 	public static final Block HORN_CORAL = new BlockBase("horn_coral_block", Material.CORAL);
 	public static final Block MUD = new Mud("mud", Material.GROUND);
 	public static final Block MOSS_STONE = new MossyStone("moss_stone", Material.ROCK);
+	public static final Block STICK_BLOCK = new BlockBase("stick_block", Material.WOOD);
 }
