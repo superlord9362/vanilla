@@ -6,6 +6,7 @@ import java.util.List;
 import lord.vum.objects.blocks.AmethystOre;
 import lord.vum.objects.blocks.BlockBase;
 import lord.vum.objects.blocks.JadeOre;
+import lord.vum.objects.blocks.MossyStone;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -47,5 +48,5 @@ public class BlockInit {
 	public static final Block TUBE_CORAL = new BlockBase("tube_coral_block", Material.CORAL);
 	public static final Block HORN_CORAL = new BlockBase("horn_coral_block", Material.CORAL);
 	public static final Block MUD = new BlockBase("mud", Material.GROUND);
-
+	public static final Block MOSS_STONE = new MossyStone("moss_stone", Material.ROCK);
 }
