@@ -1,5 +1,8 @@
 package lord.vum.proxy;
 
+import lord.vum.entities.EntityBearBlack;
+import lord.vum.entities.EntityBearBrown;
+import lord.vum.entities.EntityBeaver;
 import lord.vum.entities.EntityGoat;
 import lord.vum.entities.EntityHamster;
 import lord.vum.entities.EntityJerbos;
@@ -9,6 +12,9 @@ import lord.vum.entities.EntityPenguin;
 import lord.vum.entities.EntitySeal;
 import lord.vum.entities.EntityTiger;
 import lord.vum.entities.models.LeopardSeal;
+import lord.vum.entities.renderers.BeaverRenderer;
+import lord.vum.entities.renderers.BlackBearRenderer;
+import lord.vum.entities.renderers.BrownBearRenderer;
 import lord.vum.entities.renderers.GoatRenderer;
 import lord.vum.entities.renderers.HamsterRenderer;
 import lord.vum.entities.renderers.JerboaRenderer;
@@ -53,6 +59,9 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityLS.class, LeopardSealRenderer.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityNautilus.class, RenderNautilus.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTiger.class, TigerRenderer.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityBearBlack.class, BlackBearRenderer.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityBearBrown.class, BrownBearRenderer.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityBeaver.class, BeaverRenderer.FACTORY);
 
 	}
 }
