@@ -23,6 +23,7 @@ import lord.vum.entities.EntityLS;
 import lord.vum.entities.EntityNautilus;
 import lord.vum.entities.EntityPenguin;
 import lord.vum.entities.EntitySeal;
+import lord.vum.entities.EntityTiger;
 
 @EventBusSubscriber
 public class RegistryHandlers {
@@ -71,6 +72,8 @@ public class RegistryHandlers {
 		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, "leopardseal"), EntityLS.class, "leopardseal", entityId++, Main.instance, 64, 3, true, 0x808080, 0x000000);
 		EntityRegistry.addSpawn(EntityLS.class, 40, 1, 3, EnumCreatureType.AMBIENT, Biomes.COLD_BEACH);
 		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"nautilus"), EntityNautilus.class, "nautilus", entityId++, Main.instance, 16, 3, true, 0x808080, 0x808080);
-		
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"tiger"), EntityTiger.class, "tiger", entityId++, Main.instance, 16, 3, true, 0x77492F, 0x808080);
+		EntityRegistry.addSpawn(EntityTiger.class, 40, 1, 3, EnumCreatureType.AMBIENT, Biomes.JUNGLE);
+
 	}
 }
