@@ -2,6 +2,7 @@ package lord.vum.entities.models;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
@@ -18,6 +19,8 @@ public class Beaver extends ModelBase {
     public ModelRenderer Leg3;
     public ModelRenderer Leg4;
     public ModelRenderer Teeth;
+    protected float childYOffset = 8.0F;
+    protected float childZOffset = 4.0F;
 
     public Beaver() {
         this.textureWidth = 64;
@@ -83,8 +86,32 @@ public class Beaver extends ModelBase {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    	if (this.isChild)
+
+        {
+
+            float f6 = 2.0F;
+
+            GlStateManager.pushMatrix();
+
+            GlStateManager.translate(0.0F, this.childYOffset * f5, this.childZOffset * f5);
+
+            GlStateManager.popMatrix();
+
+            GlStateManager.pushMatrix();
+
+            GlStateManager.scale(0.5F, 0.5F, 0.5F);
+
+            GlStateManager.translate(0.0F, 24.0F * f5, 0.0F);
+
+            this.Body.render(f5);
+
+            GlStateManager.popMatrix();
+
+        } else {
         this.Body.render(f5);
-    }
+        }
+        }
 
     /**
      * This is a helper function from Tabula to set the rotation of model parts

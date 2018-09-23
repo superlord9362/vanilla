@@ -36,7 +36,7 @@ public class EntityGoat extends EntityAnimal {
 	
 	public EntityGoat(World worldIn) {
 		super(worldIn);
-		this.setSize(0.6F, 0.6F);
+		this.setSize(1.2F, 1.2F);
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class EntityGoat extends EntityAnimal {
     
     public float getEyeHeight()
     {
-        return 0.4F;
+        return 1.0F;
     }
     
 }

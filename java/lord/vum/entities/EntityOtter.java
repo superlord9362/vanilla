@@ -90,7 +90,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 
 
 
-public class EntityBeaver extends EntityTameable {
+public class EntityOtter extends EntityTameable {
 
 	private EntityAIAvoidEntity<EntityPlayer> avoidEntity;
 
@@ -104,7 +104,7 @@ public class EntityBeaver extends EntityTameable {
 
 
 
-	public EntityBeaver(World worldIn) {
+	public EntityOtter(World worldIn) {
 
 		super(worldIn);
 
@@ -354,9 +354,9 @@ public class EntityBeaver extends EntityTameable {
 
 
 
-	public EntityBeaver createChild(EntityAgeable ageable) {
+	public EntityOtter createChild(EntityAgeable ageable) {
 
-		EntityBeaver entityocelot = new EntityBeaver(this.world);
+		EntityOtter entityocelot = new EntityOtter(this.world);
 
 
 
@@ -408,13 +408,13 @@ public class EntityBeaver extends EntityTameable {
 
 			return false;
 
-		} else if (!(otherAnimal instanceof EntityBeaver)) {
+		} else if (!(otherAnimal instanceof EntityOtter)) {
 
 			return false;
 
 		} else {
 
-			EntityBeaver entityocelot = (EntityBeaver) otherAnimal;
+			EntityOtter entityocelot = (EntityOtter) otherAnimal;
 
 			return !entityocelot.isTamed() ? false : this.isInLove() && entityocelot.isInLove();
 

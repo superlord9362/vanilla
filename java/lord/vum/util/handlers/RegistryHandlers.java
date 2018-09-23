@@ -4,6 +4,7 @@ import lord.vum.Main;
 import lord.vum.entities.EntityBearBlack;
 import lord.vum.entities.EntityBearBrown;
 import lord.vum.entities.EntityBeaver;
+import lord.vum.entities.EntityGiraffe;
 import lord.vum.entities.EntityGoat;
 import lord.vum.entities.EntityHamster;
 import lord.vum.init.BlockInit;
@@ -24,9 +25,11 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import lord.vum.entities.EntityJerbos;
 import lord.vum.entities.EntityLS;
 import lord.vum.entities.EntityNautilus;
+import lord.vum.entities.EntityOtter;
 import lord.vum.entities.EntityPenguin;
 import lord.vum.entities.EntitySeal;
 import lord.vum.entities.EntityTiger;
+import lord.vum.entities.EntityTurkey;
 
 @EventBusSubscriber
 public class RegistryHandlers {
@@ -83,6 +86,12 @@ public class RegistryHandlers {
 		EntityRegistry.addSpawn(EntityBearBrown.class, 40, 1, 3, EnumCreatureType.CREATURE, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.MUTATED_FOREST);
 		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"beaver"), EntityBeaver.class, "beaver", entityId++, Main.instance, 16, 3, true, 0x682808, 0x000000);
 		EntityRegistry.addSpawn(EntityBeaver.class, 40, 1, 3, EnumCreatureType.CREATURE, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.MUTATED_FOREST);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"giraffe"), EntityGiraffe.class, "giraffe", entityId++, Main.instance, 16, 3, true, 0x9F4D00, 0x000000);
+		EntityRegistry.addSpawn(EntityGiraffe.class, 40, 3, 6, EnumCreatureType.CREATURE, Biomes.SAVANNA);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"otter"), EntityOtter.class, "otter", entityId++, Main.instance, 16, 3, true, 0x493D00, 0x000000);
+		EntityRegistry.addSpawn(EntityOtter.class, 74, 1, 3, EnumCreatureType.CREATURE, Biomes.BEACH);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"turkey"), EntityTurkey.class, "turkey", entityId++, Main.instance, 16, 3, true, 0xAD0000, 0x000000);
+		EntityRegistry.addSpawn(EntityTurkey.class, 74, 1, 3, EnumCreatureType.CREATURE, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.MUTATED_FOREST);
 
 	}
 }
