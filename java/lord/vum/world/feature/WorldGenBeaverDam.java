@@ -2,35 +2,67 @@ package lord.vum.world.feature;
 
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import lord.vum.event.EventHandler.Direction;
+import lord.vum.util.GeneratorUtils;
 
-public class WorldGenBeaverDam {
+public class WorldGenBeaverDam { //TODO c beavers
+	private final IBlockState blockyMain;
+	private final IBlockState blockySecond;
+	private final static IBlockState AIR = Blocks.AIR.getDefaultState();
 	
-	public WorldGenBeaverDam() {
-		
+	public WorldGenBeaverDam(IBlockState blocky, IBlockState blocky2) {
+		this.blockyMain = blocky;
+		this.blockySecond = blocky2;
 	}
 	
 	public boolean generate(World worldIn, Random rand, BlockPos start, BlockPos end, Direction dir) {
+		
+		//get the length of dam about to generate
+		double a = Math.abs(start.getX() - end.getX());
+		double b = Math.abs(start.getZ() - end.getZ());
+		double damLength = Math.sqrt(a*a + b*b);
+		if(damLength < 5.0)
+			return false; //no shorties
+		
 		short[][][] damMap = genDamMap(dir, rand);
+		BlockPos center = new BlockPos((start.getX()+end.getX())/2, (start.getY()+end.getY())/2, (start.getZ()+end.getZ())/2);
+		int riverDepth = worldIn.getSeaLevel() + 1 - GeneratorUtils.getOceanSurfaceHeight(worldIn, center.getX(), center.getZ());
+		int damHeight = riverDepth + rand.nextInt(2) + 3;
+		
+		//make sure the dam hight doesn't go out of bounds of array
+		damHeight = damHeight > 11? 11: damHeight;
+		
+		//make sure damn height doesn't build higher than sealevel +2
+		damHeight = damHeight+center.getY()-riverDepth > worldIn.getSeaLevel()+2? worldIn.getSeaLevel()+2-(center.getY()-riverDepth): damHeight;
 		
 		//do one pass of the mock game of life to smooth out rough edges
 		damMap[0] = cellStep(damMap);
 		
 		//make 3 more layers above base
-		for(int n=1; n<=3; n++) {
+		for(int n=1; n<=damHeight; n++) {
 			damMap[n] = layerStep(damMap, rand, n);
 		}
+		damMap = hollowDam(damMap, damHeight);
 		
-		BlockPos center = new BlockPos((start.getX()+end.getX())/2, (start.getY()+end.getY())/2, (start.getZ()+end.getZ())/2);
 		for(int x=0; x<25; x++) {
 			for(int z=0; z<25; z++) {
-				for(int y=0; y<=3; y++) {
-					if(damMap[y][x][z] == 1) {
-						worldIn.setBlockState(center.add(x-12, y, z-12), Blocks.DIAMOND_BLOCK.getDefaultState()); //TODO actually check what block we're overriding
+				for(int y=0; y<=damHeight; y++) {
+					if((center.getY()+y-riverDepth)<worldIn.getSeaLevel()+2)
+					{
+						if(damMap[y][x][z] == 1) {//TODO actually check what block we're overriding
+							if(rand.nextInt(100) > 20)
+								worldIn.setBlockState(center.add(x-12, y-riverDepth, z-12), blockyMain);
+							else
+								worldIn.setBlockState(center.add(x-12, y-riverDepth, z-12), blockySecond);
+						}
+						else if(damMap[y][x][z] == 2) {
+							worldIn.setBlockState(center.add(x-12, y-riverDepth, z-12), AIR); 
+						}
 					}
 				}
 			}
@@ -39,8 +71,8 @@ public class WorldGenBeaverDam {
 	}
 	
 	//makes the base map with '1' values in a rectangle with rough edges facing the direction of dir
-	private short[][][] genDamMap(Direction dir, Random rand) { //TODO add dist
-		short[][][] damMap = new short[10][25][25];
+	private short[][][] genDamMap(Direction dir, Random rand) { 
+		short[][][] damMap = new short[12][25][25];
 		
 		if(dir == Direction.E) {
 			for(int z=9; z<16; z++) {
@@ -62,6 +94,30 @@ public class WorldGenBeaverDam {
 						damMap[0][x][z-x+12] = 1;
 					else if(dir == Direction.SE)
 						damMap[0][x][z+x-12] = 1;
+				}
+			}
+		}
+		
+		//try to add some more randomness to the shape
+		for(int bNum=0; bNum<3; bNum++) {
+			int blobXOffset = 9;
+			int blobZOffset = 10;
+			int addBlobX = rand.nextInt(9)+blobXOffset;
+			int addBlobZ = rand.nextInt(6)+blobZOffset;
+			int blobSize = rand.nextInt(3)+2;
+			for(int xdif=-blobSize; xdif<=blobSize; xdif++) {
+				for(int zdif=-blobSize; zdif<=blobSize; zdif++) {
+					if(xdif*xdif+zdif*zdif <= blobSize*blobSize) {
+					
+						if(rand.nextInt(100) > 20) {
+							if(dir == Direction.E)
+								damMap[0][addBlobX+xdif][addBlobZ+zdif] = 1;
+							else if(dir == Direction.NE)
+								damMap[0][addBlobX+xdif][addBlobZ+zdif-(addBlobX+xdif)+12] = 1;
+							else if(dir == Direction.SE)
+								damMap[0][addBlobX+xdif][addBlobZ+zdif+(addBlobX+xdif)-12] = 1;
+						}
+					}					
 				}
 			}
 		}
@@ -117,6 +173,33 @@ public class WorldGenBeaverDam {
 			}
 		}
 		
+		return outMap;
+	}
+	
+	//turn blocks to '2' values (air) if they have solid blocks on all 6 faces
+	private short[][][] hollowDam(short[][][] inMap, int height) {
+		short[][][] outMap = new short[height][25][25];
+		for(int x=0; x<25; x++) {
+			for(int z=0; z<25; z++) {
+				for(int y=0; y<height; y++) {
+					if(x>0 && y>0 && z>0 &&
+					   x<24 && z<24 && y<height-1 &&
+					   inMap[y][x][z] == 1 && 
+					   inMap[y-1][x][z] == 1 &&
+					   inMap[y+1][x][z] == 1 &&
+					   inMap[y][x-1][z] == 1 &&
+					   inMap[y][x+1][z] == 1 &&
+					   inMap[y][x][z-1] == 1 &&
+					   inMap[y][x][z+1] == 1) {
+						outMap[y][x][z] = 2;
+					}
+					else {
+						outMap[y][x][z] = inMap[y][x][z];
+					}
+						
+				}
+			}
+		}
 		return outMap;
 	}
 }
