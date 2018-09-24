@@ -23,7 +23,7 @@ public class EventHandler {
 	private static final IBlockState WATER = Blocks.WATER.getDefaultState();
 	private static final int RIVER_MUD_PER_CHUNK = 2;
 	private static final WorldGenSand MUD_FEATURE = new WorldGenSand(BlockInit.MUD, 4);
-	private static final WorldGenBeaverDam DAM_FEATURE = new WorldGenBeaverDam(BlockInit.STICK_BLOCK.getDefaultState(), BlockInit.MUD.getDefaultState());
+	private static final WorldGenBeaverDam DAM_FEATURE = new WorldGenBeaverDam(BlockInit.STICK_BLOCK.getDefaultState(), BlockInit.MUD.getDefaultState(), true);
 	private static final int DAM_FREQUENCY = 3; //lower numbers = more dams. set this to 0 to crash
 	public enum Direction { NE, E, SE, NW, W, SW };
 	
