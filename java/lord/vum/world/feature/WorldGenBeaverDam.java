@@ -97,8 +97,7 @@ public class WorldGenBeaverDam {
 			}
 			
 			//50% chance to add a beaver on top of the dam
-//			if(rand.nextBoolean()) {
-			if(true) {
+			if(rand.nextBoolean()) {
 				mrBeaver = new EntityBeaver(worldIn);
 				mrBeaver.setLocationAndAngles((double)((float)center.getX() + rand.nextInt(2) + 0.5F), (double)1+damHeight+center.getY()-riverDepth, (double)((float)center.getZ() + rand.nextInt(2) + 0.5F), rand.nextFloat() * 360.0F, 0.0F);
                 worldIn.spawnEntity(mrBeaver);
