@@ -12,6 +12,7 @@ import lord.vum.entities.EntityNautilus;
 import lord.vum.entities.EntityOtter;
 import lord.vum.entities.EntityPenguin;
 import lord.vum.entities.EntitySeal;
+import lord.vum.entities.EntitySecretaryBird;
 import lord.vum.entities.EntityTiger;
 import lord.vum.entities.EntityTurkey;
 import lord.vum.entities.models.LeopardSeal;
@@ -27,6 +28,7 @@ import lord.vum.entities.renderers.OtterRenderer;
 import lord.vum.entities.renderers.PenguinRenderer;
 import lord.vum.entities.renderers.RenderNautilus;
 import lord.vum.entities.renderers.SealRenderer;
+import lord.vum.entities.renderers.SecretaryBirdRenderer;
 import lord.vum.entities.renderers.TigerRenderer;
 import lord.vum.entities.renderers.TurkeyRenderer;
 import lord.vum.util.Reference;
@@ -71,5 +73,6 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityGiraffe.class, GiraffeRenderer.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityOtter.class, OtterRenderer.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTurkey.class, TurkeyRenderer.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntitySecretaryBird.class, SecretaryBirdRenderer.FACTORY);
 	}
 }
