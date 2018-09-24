@@ -28,6 +28,7 @@ import lord.vum.entities.EntityNautilus;
 import lord.vum.entities.EntityOtter;
 import lord.vum.entities.EntityPenguin;
 import lord.vum.entities.EntitySeal;
+import lord.vum.entities.EntitySecretaryBird;
 import lord.vum.entities.EntityTiger;
 import lord.vum.entities.EntityTurkey;
 
@@ -92,6 +93,8 @@ public class RegistryHandlers {
 		EntityRegistry.addSpawn(EntityOtter.class, 74, 1, 3, EnumCreatureType.CREATURE, Biomes.BEACH);
 		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"turkey"), EntityTurkey.class, "turkey", entityId++, Main.instance, 16, 3, true, 0xAD0000, 0x000000);
 		EntityRegistry.addSpawn(EntityTurkey.class, 74, 1, 3, EnumCreatureType.CREATURE, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.MUTATED_FOREST);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"secretary"), EntitySecretaryBird.class, "secretary", entityId++, Main.instance, 16, 3, true, 0xB76217, 0x000000);
+		EntityRegistry.addSpawn(EntitySecretaryBird.class, 74, 1, 3, EnumCreatureType.CREATURE, Biomes.SAVANNA);
 
 	}
 }
