@@ -32,7 +32,8 @@ public class RenderNautilus extends RenderLiving<EntityNautilus>{
     protected void applyRotations(EntityNautilus entityLiving, float p_77043_2_, float rotationYaw, float partialTicks)
     {
 		GlStateManager.rotate(180f-rotationYaw,0,1f,0);
-		GlStateManager.rotate(entityLiving.prevRotationPitch+(entityLiving.rotationPitch-entityLiving.prevRotationPitch)*partialTicks,1f,0,0);
+		//entityLiving.prevRotationPitch+(entityLiving.rotationPitch-entityLiving.prevRotationPitch)*partialTicks
+		GlStateManager.rotate(entityLiving.rotationPitch,1f,0,0);
 		if(entityLiving.isInWater()) return;
 		GlStateManager.translate(0, .05, 0);
 		GlStateManager.rotate(90f,0,0,1f);
