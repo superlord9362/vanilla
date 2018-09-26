@@ -118,7 +118,7 @@ public class EventHandler {
 						for(int riverSearch=1; riverSearch<7; riverSearch++) {
 							state = world.getBlockState(getDirectionalPos(pos, dirToTest, riverSearch));
 							if(state != WATER) {
-								secondBankDir = Direction.SE;
+								secondBankDir = dirToTest;
 								secondBankPos = getDirectionalPos(pos, dirToTest, riverSearch);
 								break;
 							}
