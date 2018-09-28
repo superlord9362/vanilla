@@ -4,11 +4,14 @@ import java.util.Random;
 
 import lord.vum.config.Configs;
 import lord.vum.init.BlockInit;
+import lord.vum.objects.blocks.BlockStalagmite;
 import lord.vum.world.feature.WorldGenBeaverDam;
 import lord.vum.world.feature.WorldGenMuddyLake;
+import net.minecraft.block.BlockStone;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -30,11 +33,15 @@ public class EventHandler {
 	private static final WorldGenBlockBlob MOSSY_FEATURE = new WorldGenBlockBlob(BlockInit.MOSS_STONE, 2);
 	private static final WorldGenBeaverDam DAM_FEATURE = new WorldGenBeaverDam(BlockInit.STICK_BLOCK.getDefaultState(), BlockInit.MUD.getDefaultState(), true);
 	private static final int DAM_FREQUENCY = 3; //lower numbers = more dams. set this to 0 to crash
+	private static final int STALAGTITE_FREQUENCY = 9;
+	private static final int STALAGTITE_MAX_HEIGHT=64;
 	public enum Direction { NE, E, SE, NW, W, SW };
 	
 	static {
 		RIVER_MUD_PER_CHUNK = Configs.worldgen.riverMudFrequency;
 		MOSSY_STONE_PER_CHUNK = Configs.worldgen.mossyStoneFrequency;
+		STALAGTITE_FREQUENCY = Configs.worldgen.stalagtiteFrequency;
+		STALAGTITE_MAX_HEIGHT=Configs.worldgen.stalagtiteMaxHeight;
 	}
 	
 	//Replace vanilla lakes with our lakes that contains mud blocks around the edges
@@ -170,6 +177,43 @@ public class EventHandler {
 			}
 		}
 
+		// Try adding stalagmite stalagtite pairs to caves
+		for (int n = 0;n<STALAGTITE_FREQUENCY;n++) {
+			//if(rand.nextBoolean()) continue;
+			int x = rand.nextInt(16)+8;
+			int z = rand.nextInt(16)+8;
+			BlockPos pos = new BlockPos(event.getChunkPos().getXStart()+x,STALAGTITE_MAX_HEIGHT,event.getChunkPos().getZStart()+z);
+			IBlockState down = BlockInit.STONE_STALAGMITE_TALL.getDefaultState().withProperty(BlockStalagmite.FACING,EnumFacing.DOWN); 
+			IBlockState up = BlockInit.STONE_STALAGMITE_SHORT.getDefaultState().withProperty(BlockStalagmite.FACING,EnumFacing.UP); 
+			BlockPos firstPosition = null;
+			BlockPos secondPosition=null;
+			boolean shouldPlaceSmall = false;
+			while(pos.getY()>0) {
+				IBlockState lastBlock = world.getBlockState(pos);
+				pos=pos.offset(EnumFacing.DOWN);
+				
+				if(world.getBlockState(pos).getBlock()!=Blocks.AIR) continue;
+				if(!shouldPlaceSmall) {
+					if(lastBlock.getBlock()==Blocks.STONE) {
+						shouldPlaceSmall = true;
+						firstPosition = pos;
+					}
+				}
+				else {
+					BlockPos nextPos = pos.offset(EnumFacing.DOWN);
+					lastBlock = world.getBlockState(nextPos);
+					if(lastBlock.getBlock()!=Blocks.AIR) {
+						secondPosition = pos;
+						break;
+					}
+				}
+			}
+			if(firstPosition==null) return;
+			world.setBlockState(firstPosition, down);
+			if(secondPosition==null) return;
+			if(firstPosition.getY()-secondPosition.getY()<3) return;
+			world.setBlockState(secondPosition, up);
+		}
 	}
 
 	

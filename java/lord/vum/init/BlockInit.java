@@ -5,6 +5,7 @@ import java.util.List;
 
 import lord.vum.objects.blocks.AmethystOre;
 import lord.vum.objects.blocks.BlockBase;
+import lord.vum.objects.blocks.BlockStalagmite;
 import lord.vum.objects.blocks.JadeOre;
 import lord.vum.objects.blocks.MossyStone;
 import lord.vum.objects.blocks.Mud;
@@ -51,4 +52,6 @@ public class BlockInit {
 	public static final Block MUD = new Mud("mud", Material.GROUND);
 	public static final Block MOSS_STONE = new MossyStone("moss_stone", Material.ROCK);
 	public static final Block STICK_BLOCK = new BlockBase("stick_block", Material.WOOD);
+	public static final Block STONE_STALAGMITE_SHORT = new BlockStalagmite("stone_stalagmite_short",Material.ROCK,18);
+	public static final Block STONE_STALAGMITE_TALL = new BlockStalagmite("stone_stalagmite_tall",Material.ROCK,30);
 }

@@ -1,0 +1,6 @@
+{
+	"parent":"vum:block/stalagmite_tall_all",
+	"textures":{
+		"all":"blocks/stone"
+	}
+}
