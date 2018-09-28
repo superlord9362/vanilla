@@ -20,7 +20,7 @@ public class BlockInit {
 	public static final Block PILLAR_DIORITE = new BlockBase("pillar_diorite", Material.ROCK);
 	public static final Block PILLAR_GRANITE = new BlockBase("pillar_granite", Material.ROCK);
 	public static final Block AMETHYST_BLOCK = new BlockBase("amethyst_block", Material.ROCK);
-	public static final Block GRANITE_PILLARS = new BlockBase("granite_pillars", Material.ROCK);
+	public static final Block GRANITE_BRICKS = new BlockBase("granite_bricks", Material.ROCK);
 	public static final Block ANDESITE_BRICKS = new BlockBase("andesite_bricks", Material.ROCK);
 	public static final Block DIORITE_BRICKS = new BlockBase("diorite_bricks", Material.ROCK);
 	public static final Block JADE_BLOCK = new BlockBase("jade_block", Material.ROCK);

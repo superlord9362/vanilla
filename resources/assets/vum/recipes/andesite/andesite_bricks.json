@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA",
+    "AA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:stone",
+      "data":6
+    }
+  },
+  "result": {
+    "item": "vum:andesite_bricks",
+    "count": 4
+  }
+}
