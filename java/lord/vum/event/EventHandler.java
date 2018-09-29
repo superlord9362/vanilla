@@ -33,8 +33,8 @@ public class EventHandler {
 	private static final WorldGenBlockBlob MOSSY_FEATURE = new WorldGenBlockBlob(BlockInit.MOSS_STONE, 2);
 	private static final WorldGenBeaverDam DAM_FEATURE = new WorldGenBeaverDam(BlockInit.STICK_BLOCK.getDefaultState(), BlockInit.MUD.getDefaultState(), true);
 	private static final int DAM_FREQUENCY = 3; //lower numbers = more dams. set this to 0 to crash
-	private static final int STALAGTITE_FREQUENCY = 9;
-	private static final int STALAGTITE_MAX_HEIGHT=64;
+	private static final int STALAGTITE_FREQUENCY;
+	private static final int STALAGTITE_MAX_HEIGHT;
 	public enum Direction { NE, E, SE, NW, W, SW };
 	
 	static {
@@ -176,15 +176,19 @@ public class EventHandler {
 				MOSSY_FEATURE.generate(event.getWorld(), event.getRand(), pos);
 			}
 		}
-
+		int counter= 0;
 		// Try adding stalagmite stalagtite pairs to caves
 		for (int n = 0;n<STALAGTITE_FREQUENCY;n++) {
 			//if(rand.nextBoolean()) continue;
+			if(counter>6) break;
 			int x = rand.nextInt(16)+8;
 			int z = rand.nextInt(16)+8;
 			BlockPos pos = new BlockPos(event.getChunkPos().getXStart()+x,STALAGTITE_MAX_HEIGHT,event.getChunkPos().getZStart()+z);
-			IBlockState down = BlockInit.STONE_STALAGMITE_TALL.getDefaultState().withProperty(BlockStalagmite.FACING,EnumFacing.DOWN); 
-			IBlockState up = BlockInit.STONE_STALAGMITE_SHORT.getDefaultState().withProperty(BlockStalagmite.FACING,EnumFacing.UP); 
+			IBlockState down_stone = BlockInit.STONE_STALAGMITE_TALL.getDefaultState().withProperty(BlockStalagmite.FACING,EnumFacing.DOWN); 
+			IBlockState up_stone = BlockInit.STONE_STALAGMITE_SHORT.getDefaultState().withProperty(BlockStalagmite.FACING,EnumFacing.UP); 
+			IBlockState down_sandstone = BlockInit.SANDSTONE_STALAGMITE_TALL.getDefaultState().withProperty(BlockStalagmite.FACING,EnumFacing.DOWN); 
+			IBlockState up_sandstone = BlockInit.SANDSTONE_STALAGMITE_SHORT.getDefaultState().withProperty(BlockStalagmite.FACING,EnumFacing.UP); 
+			boolean isSandstone = false;
 			BlockPos firstPosition = null;
 			BlockPos secondPosition=null;
 			boolean shouldPlaceSmall = false;
@@ -198,6 +202,11 @@ public class EventHandler {
 						shouldPlaceSmall = true;
 						firstPosition = pos;
 					}
+					else if(lastBlock.getBlock()==Blocks.SANDSTONE) {
+						shouldPlaceSmall = true;
+						firstPosition = pos;
+						isSandstone=true;
+					}
 				}
 				else {
 					BlockPos nextPos = pos.offset(EnumFacing.DOWN);
@@ -209,10 +218,11 @@ public class EventHandler {
 				}
 			}
 			if(firstPosition==null) return;
-			world.setBlockState(firstPosition, down);
+			counter++;
+			world.setBlockState(firstPosition, isSandstone?down_sandstone:down_stone);
 			if(secondPosition==null) return;
 			if(firstPosition.getY()-secondPosition.getY()<3) return;
-			world.setBlockState(secondPosition, up);
+			world.setBlockState(secondPosition, isSandstone?up_sandstone:up_stone);
 		}
 	}
 

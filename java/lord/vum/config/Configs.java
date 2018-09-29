@@ -44,9 +44,9 @@ public class Configs {
 		@Config.RequiresWorldRestart
 		public int mossyStoneFrequency = 1;
 		
-		@Config.Comment({"Maximum amount of Stalagmite pairs per chunk", "Default: 9"})
+		@Config.Comment({"Maximum amount of Stalagmite Spawn Attempts per chunk", "Default: 25"})
 		@Config.RequiresWorldRestart
-		public int stalagtiteFrequency = 9;
+		public int stalagtiteFrequency = 25;
 		
 		@Config.Comment({"Maximum height stalagtites can start generating", "Default: 64"})
 		@Config.RequiresWorldRestart
