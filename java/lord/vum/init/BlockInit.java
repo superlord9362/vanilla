@@ -54,4 +54,6 @@ public class BlockInit {
 	public static final Block STICK_BLOCK = new BlockBase("stick_block", Material.WOOD);
 	public static final Block STONE_STALAGMITE_SHORT = new BlockStalagmite("stone_stalagmite_short",Material.ROCK,18);
 	public static final Block STONE_STALAGMITE_TALL = new BlockStalagmite("stone_stalagmite_tall",Material.ROCK,30);
+	public static final Block SANDSTONE_STALAGMITE_SHORT = new BlockStalagmite("sandstone_stalagmite_short",Material.ROCK,18);
+	public static final Block SANDSTONE_STALAGMITE_TALL = new BlockStalagmite("sandstone_stalagmite_tall",Material.ROCK,30);
 }

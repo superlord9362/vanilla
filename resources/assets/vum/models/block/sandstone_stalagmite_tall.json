@@ -1,0 +1,12 @@
+{
+	"parent":"vum:block/stalagmite_tall",
+	"textures":{
+		"particle":"blocks/sandstone_normal",
+		"up":"blocks/sandstone_bottom",
+		"down":"blocks/sandstone_top",
+		"east":"blocks/sandstone_normal",
+		"south":"blocks/sandstone_normal",
+		"north":"blocks/sandstone_normal",
+		"west":"blocks/sandstone_normal"
+	}
+}
