@@ -5,6 +5,7 @@ import java.util.List;
 
 import lord.vum.objects.blocks.AmethystOre;
 import lord.vum.objects.blocks.BlockBase;
+import lord.vum.objects.blocks.BlockStalagmite;
 import lord.vum.objects.blocks.JadeOre;
 import lord.vum.objects.blocks.MossyStone;
 import lord.vum.objects.blocks.Mud;
@@ -20,7 +21,7 @@ public class BlockInit {
 	public static final Block PILLAR_DIORITE = new BlockBase("pillar_diorite", Material.ROCK);
 	public static final Block PILLAR_GRANITE = new BlockBase("pillar_granite", Material.ROCK);
 	public static final Block AMETHYST_BLOCK = new BlockBase("amethyst_block", Material.ROCK);
-	public static final Block GRANITE_PILLARS = new BlockBase("granite_pillars", Material.ROCK);
+	public static final Block GRANITE_BRICKS = new BlockBase("granite_bricks", Material.ROCK);
 	public static final Block ANDESITE_BRICKS = new BlockBase("andesite_bricks", Material.ROCK);
 	public static final Block DIORITE_BRICKS = new BlockBase("diorite_bricks", Material.ROCK);
 	public static final Block JADE_BLOCK = new BlockBase("jade_block", Material.ROCK);
@@ -51,4 +52,8 @@ public class BlockInit {
 	public static final Block MUD = new Mud("mud", Material.GROUND);
 	public static final Block MOSS_STONE = new MossyStone("moss_stone", Material.ROCK);
 	public static final Block STICK_BLOCK = new BlockBase("stick_block", Material.WOOD);
+	public static final Block STONE_STALAGMITE_SHORT = new BlockStalagmite("stone_stalagmite_short",Material.ROCK,18);
+	public static final Block STONE_STALAGMITE_TALL = new BlockStalagmite("stone_stalagmite_tall",Material.ROCK,30);
+	public static final Block SANDSTONE_STALAGMITE_SHORT = new BlockStalagmite("sandstone_stalagmite_short",Material.ROCK,18);
+	public static final Block SANDSTONE_STALAGMITE_TALL = new BlockStalagmite("sandstone_stalagmite_tall",Material.ROCK,30);
 }

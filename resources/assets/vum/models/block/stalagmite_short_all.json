@@ -1,0 +1,12 @@
+{
+	"parent":"vum:block/stalagmite_short",
+	"textures":{
+		"particle":"#all",
+		"up":"#all",
+		"down":"#all",
+		"east":"#all",
+		"west":"#all",
+		"north":"#all",
+		"south":"#all"
+	}
+}

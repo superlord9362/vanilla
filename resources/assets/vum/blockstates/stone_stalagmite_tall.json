@@ -1,0 +1,33 @@
+{
+	"variants":{
+		"facing=up":{
+			"model":"vum:stone_stalagmite_tall"
+
+		},
+		"facing=down":{
+			"model":"vum:stone_stalagmite_tall",
+			"x":180
+		},
+		"facing=east":{
+			"model":"vum:stone_stalagmite_tall",
+			"x":90,
+			"y":90
+		},
+		"facing=west":{
+			"model":"vum:stone_stalagmite_tall",
+			"x":90,
+			"y":270
+		},
+		"facing=south":{
+			"model":"vum:stone_stalagmite_tall",
+			"x":90,
+			"y":180
+			
+		},
+		"facing=north":{
+			"model":"vum:stone_stalagmite_tall",
+			"x":90
+		}
+
+	}
+}

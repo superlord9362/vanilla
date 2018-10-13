@@ -1,6 +1,10 @@
 package lord.vum.util.handlers;
 
 import lord.vum.Main;
+import lord.vum.entities.EntityBearBlack;
+import lord.vum.entities.EntityBearBrown;
+import lord.vum.entities.EntityBeaver;
+import lord.vum.entities.EntityGiraffe;
 import lord.vum.entities.EntityGoat;
 import lord.vum.entities.EntityHamster;
 import lord.vum.init.BlockInit;
@@ -21,9 +25,12 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import lord.vum.entities.EntityJerbos;
 import lord.vum.entities.EntityLS;
 import lord.vum.entities.EntityNautilus;
+import lord.vum.entities.EntityOtter;
 import lord.vum.entities.EntityPenguin;
 import lord.vum.entities.EntitySeal;
+import lord.vum.entities.EntitySecretaryBird;
 import lord.vum.entities.EntityTiger;
+import lord.vum.entities.EntityTurkey;
 
 @EventBusSubscriber
 public class RegistryHandlers {
@@ -74,6 +81,20 @@ public class RegistryHandlers {
 		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"nautilus"), EntityNautilus.class, "nautilus", entityId++, Main.instance, 16, 3, true, 0x808080, 0x808080);
 		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"tiger"), EntityTiger.class, "tiger", entityId++, Main.instance, 16, 3, true, 0x77492F, 0x808080);
 		EntityRegistry.addSpawn(EntityTiger.class, 40, 1, 3, EnumCreatureType.AMBIENT, Biomes.JUNGLE);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"blackbear"), EntityBearBlack.class, "blackbear", entityId++, Main.instance, 16, 3, true, 0x352015, 0x000000);
+		EntityRegistry.addSpawn(EntityBearBlack.class, 40, 1, 3, EnumCreatureType.CREATURE, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"brownbear"), EntityBearBrown.class, "brownbear", entityId++, Main.instance, 16, 3, true, 0x965A3C, 0x000000);
+		EntityRegistry.addSpawn(EntityBearBrown.class, 40, 1, 3, EnumCreatureType.CREATURE, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.MUTATED_FOREST);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"beaver"), EntityBeaver.class, "beaver", entityId++, Main.instance, 16, 3, true, 0x682808, 0x000000);
+		EntityRegistry.addSpawn(EntityBeaver.class, 40, 1, 3, EnumCreatureType.CREATURE, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.MUTATED_FOREST);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"giraffe"), EntityGiraffe.class, "giraffe", entityId++, Main.instance, 16, 3, true, 0x9F4D00, 0x000000);
+		EntityRegistry.addSpawn(EntityGiraffe.class, 40, 3, 6, EnumCreatureType.CREATURE, Biomes.SAVANNA);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"otter"), EntityOtter.class, "otter", entityId++, Main.instance, 16, 3, true, 0x493D00, 0x000000);
+		EntityRegistry.addSpawn(EntityOtter.class, 74, 1, 3, EnumCreatureType.CREATURE, Biomes.BEACH);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"turkey"), EntityTurkey.class, "turkey", entityId++, Main.instance, 16, 3, true, 0xAD0000, 0x000000);
+		EntityRegistry.addSpawn(EntityTurkey.class, 74, 1, 3, EnumCreatureType.CREATURE, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.MUTATED_FOREST);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID,"secretary"), EntitySecretaryBird.class, "secretary", entityId++, Main.instance, 16, 3, true, 0xB76217, 0x000000);
+		EntityRegistry.addSpawn(EntitySecretaryBird.class, 74, 1, 3, EnumCreatureType.CREATURE, Biomes.SAVANNA);
 
 	}
 }

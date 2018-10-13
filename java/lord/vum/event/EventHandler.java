@@ -2,29 +2,47 @@ package lord.vum.event;
 
 import java.util.Random;
 
+import lord.vum.config.Configs;
 import lord.vum.init.BlockInit;
-import lord.vum.util.GeneratorUtils;
+import lord.vum.objects.blocks.BlockStalagmite;
 import lord.vum.world.feature.WorldGenBeaverDam;
 import lord.vum.world.feature.WorldGenMuddyLake;
+import net.minecraft.block.BlockStone;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenBlockBlob;
 import net.minecraft.world.gen.feature.WorldGenSand;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate;
 
 public class EventHandler {
 	private static final IBlockState WATER = Blocks.WATER.getDefaultState();
-	private static final int RIVER_MUD_PER_CHUNK = 2;
+	private static final int RIVER_MUD_PER_CHUNK;
 	private static final WorldGenSand MUD_FEATURE = new WorldGenSand(BlockInit.MUD, 4);
-	private static final WorldGenBeaverDam DAM_FEATURE = new WorldGenBeaverDam();
+	private static final int MOSSY_STONE_PER_CHUNK;
+	private static final WorldGenBlockBlob MOSSY_FEATURE = new WorldGenBlockBlob(BlockInit.MOSS_STONE, 2);
+	private static final WorldGenBeaverDam DAM_FEATURE = new WorldGenBeaverDam(BlockInit.STICK_BLOCK.getDefaultState(), BlockInit.MUD.getDefaultState(), true);
+	private static final int DAM_FREQUENCY = 3; //lower numbers = more dams. set this to 0 to crash
+	private static final int STALAGTITE_FREQUENCY;
+	private static final int STALAGTITE_MAX_HEIGHT;
 	public enum Direction { NE, E, SE, NW, W, SW };
+	
+	static {
+		RIVER_MUD_PER_CHUNK = Configs.worldgen.riverMudFrequency;
+		MOSSY_STONE_PER_CHUNK = Configs.worldgen.mossyStoneFrequency;
+		STALAGTITE_FREQUENCY = Configs.worldgen.stalagtiteFrequency;
+		STALAGTITE_MAX_HEIGHT=Configs.worldgen.stalagtiteMaxHeight;
+	}
 	
 	//Replace vanilla lakes with our lakes that contains mud blocks around the edges
 	@SubscribeEvent 
@@ -40,102 +58,174 @@ public class EventHandler {
 		}
 	}
 	
-	//Add muddy blobs to rivers
+	
 	@SubscribeEvent
-	 public void onBiomeDecorate(DecorateBiomeEvent.Pre event) {
+	public void onBiomeDecoratePre(DecorateBiomeEvent.Pre event) {
 		Random rand = event.getRand();
 		World world = event.getWorld();
-		for(int n=0; n<RIVER_MUD_PER_CHUNK+2; n++) {
+
+		// Add muddy blobs to rivers
+		for (int n = 0; n < RIVER_MUD_PER_CHUNK; n++) {
 			int x = rand.nextInt(16) + 8;
-	        int z = rand.nextInt(16) + 8;
-	        BlockPos pos = new BlockPos(event.getChunkPos().getXStart() + x, 0, event.getChunkPos().getZStart() + z);
-			if(world.getBiome(pos) == Biomes.RIVER) {
+			int z = rand.nextInt(16) + 8;
+			BlockPos pos = new BlockPos(event.getChunkPos().getXStart() + x, 0, event.getChunkPos().getZStart() + z);
+			if (world.getBiome(pos) == Biomes.RIVER) {
 				MUD_FEATURE.generate(event.getWorld(), event.getRand(), event.getWorld().getTopSolidOrLiquidBlock(pos));
 			}
 		}
-		
-		for(int m=0; m<1; m++) {
-			int x = rand.nextInt(16) + 8;
-	        int z = rand.nextInt(16) + 8;
-	        BlockPos pos = new BlockPos(event.getChunkPos().getXStart() + x, world.getSeaLevel()-1, event.getChunkPos().getZStart() + z);
-			if(world.getBiome(pos) == Biomes.RIVER) {
+
+		// add dams to rivers
+		if (rand.nextInt(DAM_FREQUENCY) == 0) {
+			// smaller rng range for location to prevent cascading... hopefully
+			int x = rand.nextInt(8) + 12;
+			int z = rand.nextInt(8) + 12;
+			BlockPos pos = new BlockPos(event.getChunkPos().getXStart() + x, world.getSeaLevel() - 1, event.getChunkPos().getZStart() + z);
+			if (world.getBiome(pos) == Biomes.RIVER) {
 				IBlockState state = world.getBlockState(pos);
-				if(state != WATER)
-					break;
-				
-				Direction firstBank = null;
-				BlockPos firstBankPos = null;
-				
-				//check east, north east, south east (in that order) from starting location to find first river bank
-				for(int riverSearch=1; riverSearch<10; riverSearch++) {
-					//check east block
-					state = world.getBlockState(getDirectionalPos(pos, Direction.E, riverSearch));
-					if(state != WATER) {
-						firstBank = Direction.E;
-						firstBankPos = getDirectionalPos(pos, Direction.E, riverSearch);
-						break;
-					}
-					
-					//check north east block
-					state = world.getBlockState(getDirectionalPos(pos, Direction.NE, riverSearch));
-					if(state != WATER) {
-						firstBank = Direction.NE;
-						firstBankPos = getDirectionalPos(pos, Direction.NE, riverSearch);
-						break;
-					}
-					
-					//check south east block
-					state = world.getBlockState(getDirectionalPos(pos, Direction.SE, riverSearch));
-					if(state != WATER) {
-						firstBank = Direction.SE;
-						firstBankPos = getDirectionalPos(pos, Direction.SE, riverSearch);
-						break;
-					}
-				}
-				
-				//make sure we actually found a bank before continuing 
-				if(firstBank != null) {
-					world.setBlockState(pos.add(0,2,0), Blocks.WOOL.getDefaultState()); //TODO remove
-					Direction secondBank = null;
-					BlockPos secondBankPos = null;
-					Direction dirToTest = null;
-					
-					switch(firstBank) {
-						case NE:
-							dirToTest = Direction.SW;
+				if (state == WATER) {
+					Direction firstBankDir = null;
+					BlockPos firstBankPos = null;
+
+					// check east, north east, south east (in that order) from starting location to
+					// find first river bank
+					for (int riverSearch = 1; riverSearch < 10; riverSearch++) {
+						// check east block
+						state = world.getBlockState(getDirectionalPos(pos, Direction.E, riverSearch));
+						if (state != WATER) {
+							firstBankDir = Direction.E;
+							firstBankPos = getDirectionalPos(pos, Direction.E, riverSearch);
 							break;
-						case E:
-							dirToTest = Direction.W;
+						}
+
+						// check north east block
+						state = world.getBlockState(getDirectionalPos(pos, Direction.NE, riverSearch));
+						if (state != WATER) {
+							firstBankDir = Direction.NE;
+							firstBankPos = getDirectionalPos(pos, Direction.NE, riverSearch);
 							break;
-						case SE:
-							dirToTest = Direction.NW;
-							break;
-						default:
-							//how did you get here
-							break;
-					}
-					
-					for(int riverSearch=1; riverSearch<7; riverSearch++) {
-						state = world.getBlockState(getDirectionalPos(pos, dirToTest, riverSearch));
-						if(state != WATER) {
-							secondBank = Direction.SE;
-							secondBankPos = getDirectionalPos(pos, dirToTest, riverSearch);
+						}
+
+						// check south east block
+						state = world.getBlockState(getDirectionalPos(pos, Direction.SE, riverSearch));
+						if (state != WATER) {
+							firstBankDir = Direction.SE;
+							firstBankPos = getDirectionalPos(pos, Direction.SE, riverSearch);
 							break;
 						}
 					}
-					
-					if(secondBank != null) {
-						//ayyy we found two sides to a river
-//						for (BlockPos pixel : GeneratorUtils.getBresehnamArrays(firstBankPos.add(0,1,0), secondBankPos.add(0,1,0))) {
-//							world.setBlockState(pixel, Blocks.NETHER_BRICK.getDefaultState());
-//						}
-						DAM_FEATURE.generate(world, rand, firstBankPos, secondBankPos, firstBank);
-						world.setBlockState(pos.add(0,2,0), Blocks.NETHER_BRICK.getDefaultState());
+
+					// make sure we actually found a bank before continuing
+					if (firstBankDir != null) {
+						Direction secondBankDir = null;
+						BlockPos secondBankPos = null;
+						Direction dirToTest = null;
+
+						switch (firstBankDir) {
+							case NE:
+								dirToTest = Direction.SW;
+								break;
+							case E:
+								dirToTest = Direction.W;
+								break;
+							case SE:
+								dirToTest = Direction.NW;
+								break;
+							default:
+								// how did you get here
+								break;
+						}
+
+						for (int riverSearch = 1; riverSearch < 7; riverSearch++) {
+							state = world.getBlockState(getDirectionalPos(pos, dirToTest, riverSearch));
+							if (state != WATER) {
+								secondBankDir = dirToTest;
+								secondBankPos = getDirectionalPos(pos, dirToTest, riverSearch);
+								break;
+							}
+						}
+
+						if (secondBankDir != null) {
+
+							// check that at least one edge of the dam is touching a forest type biome
+							Biome firstBankBiome = world.getBiome(getDirectionalPos(firstBankPos, firstBankDir, 4));
+							Biome secondBankBiome = world.getBiome(getDirectionalPos(secondBankPos, secondBankDir, 4));
+							if (BiomeDictionary.hasType(firstBankBiome, BiomeDictionary.Type.FOREST)
+									|| BiomeDictionary.hasType(secondBankBiome, BiomeDictionary.Type.FOREST)) {
+
+								DAM_FEATURE.generate(world, rand, firstBankPos, secondBankPos, firstBankDir);
+							}
+						}
 					}
 				}
 			}
 		}
 	}
+
+	@SubscribeEvent
+	public void onBiomeDecoratePost(DecorateBiomeEvent.Post event) {
+		Random rand = event.getRand();
+		World world = event.getWorld();
+
+		// Add mossy stone blobs to jungle biome
+		for (int n = 0; n < MOSSY_STONE_PER_CHUNK; n++) {
+			int x = rand.nextInt(8) + 12;
+			int z = rand.nextInt(8) + 12;
+			BlockPos pos = new BlockPos(event.getChunkPos().getXStart() + x, 0, event.getChunkPos().getZStart() + z);
+			if (world.getBiome(pos) == Biomes.JUNGLE) {
+				pos = pos.add(0, rand.nextInt(event.getWorld().getTopSolidOrLiquidBlock(pos).getY() - 10) + 5, 0);
+				MOSSY_FEATURE.generate(event.getWorld(), event.getRand(), pos);
+			}
+		}
+		int counter= 0;
+		// Try adding stalagmite stalagtite pairs to caves
+		for (int n = 0;n<STALAGTITE_FREQUENCY;n++) {
+			//if(rand.nextBoolean()) continue;
+			if(counter>6) break;
+			int x = rand.nextInt(16)+8;
+			int z = rand.nextInt(16)+8;
+			BlockPos pos = new BlockPos(event.getChunkPos().getXStart()+x,STALAGTITE_MAX_HEIGHT,event.getChunkPos().getZStart()+z);
+			IBlockState down_stone = BlockInit.STONE_STALAGMITE_TALL.getDefaultState().withProperty(BlockStalagmite.FACING,EnumFacing.DOWN); 
+			IBlockState up_stone = BlockInit.STONE_STALAGMITE_SHORT.getDefaultState().withProperty(BlockStalagmite.FACING,EnumFacing.UP); 
+			IBlockState down_sandstone = BlockInit.SANDSTONE_STALAGMITE_TALL.getDefaultState().withProperty(BlockStalagmite.FACING,EnumFacing.DOWN); 
+			IBlockState up_sandstone = BlockInit.SANDSTONE_STALAGMITE_SHORT.getDefaultState().withProperty(BlockStalagmite.FACING,EnumFacing.UP); 
+			boolean isSandstone = false;
+			BlockPos firstPosition = null;
+			BlockPos secondPosition=null;
+			boolean shouldPlaceSmall = false;
+			while(pos.getY()>0) {
+				IBlockState lastBlock = world.getBlockState(pos);
+				pos=pos.offset(EnumFacing.DOWN);
+				
+				if(world.getBlockState(pos).getBlock()!=Blocks.AIR) continue;
+				if(!shouldPlaceSmall) {
+					if(lastBlock.getBlock()==Blocks.STONE) {
+						shouldPlaceSmall = true;
+						firstPosition = pos;
+					}
+					else if(lastBlock.getBlock()==Blocks.SANDSTONE) {
+						shouldPlaceSmall = true;
+						firstPosition = pos;
+						isSandstone=true;
+					}
+				}
+				else {
+					BlockPos nextPos = pos.offset(EnumFacing.DOWN);
+					lastBlock = world.getBlockState(nextPos);
+					if(lastBlock.getBlock()!=Blocks.AIR) {
+						secondPosition = pos;
+						break;
+					}
+				}
+			}
+			if(firstPosition==null) return;
+			counter++;
+			world.setBlockState(firstPosition, isSandstone?down_sandstone:down_stone);
+			if(secondPosition==null) return;
+			if(firstPosition.getY()-secondPosition.getY()<3) return;
+			world.setBlockState(secondPosition, isSandstone?up_sandstone:up_stone);
+		}
+	}
+
 	
 	private BlockPos getDirectionalPos(BlockPos pos, Direction dir, int numBlocksAway) {
 		switch (dir) {
@@ -154,9 +244,6 @@ public class EventHandler {
 			default:
 				return pos;
 		}
-				
-	}
-	
-//  public void onBiomeDecorate(DecorateBiomeEvent.Decorate event) {
 
+	}
 }

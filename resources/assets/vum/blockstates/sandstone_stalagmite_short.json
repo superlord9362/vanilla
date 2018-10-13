@@ -1,0 +1,33 @@
+{
+	"variants":{
+		"facing=up":{
+			"model":"vum:sandstone_stalagmite_short"
+
+		},
+		"facing=down":{
+			"model":"vum:sandstone_stalagmite_short",
+			"x":180
+		},
+		"facing=east":{
+			"model":"vum:sandstone_stalagmite_short",
+			"x":90,
+			"y":90
+		},
+		"facing=west":{
+			"model":"vum:sandstone_stalagmite_short",
+			"x":90,
+			"y":270
+		},
+		"facing=south":{
+			"model":"vum:sandstone_stalagmite_short",
+			"x":90,
+			"y":180
+			
+		},
+		"facing=north":{
+			"model":"vum:sandstone_stalagmite_short",
+			"x":90
+		}
+
+	}
+}
